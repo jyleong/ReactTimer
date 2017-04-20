@@ -10,26 +10,36 @@ describe('Clock', () => {
     it('should exist', () => {
         expect(Clock).toExist();
     });
-});
 
-describe('formatSeconds', () => {
-    it('should format seconds', () => {
-        //want to render the component to be able to check it
-        var clock = TestUtils.renderIntoDocument(<Clock/>);
-        var seconds = 615;
-        var expected = '10:15';
-        var actual = clock.formatSeconds(seconds);
+    describe('render', () => {
+        it('should render clock to output', () => {
+            var clock = TestUtils.renderIntoDocument(<Clock totalSeconds={62}/>);
+            var $el = $(ReactDOM.findDOMNode(clock));
+            var actualText = $el.find('.clock-text').text();
 
-        expect(actual).toBe(expected);
+            expect(actualText).toBe('01:02');
+        });
     });
 
-    it('should format seconds when min/sec are less than 10', () => {
-        //want to render the component to be able to check it
-        var clock = TestUtils.renderIntoDocument(<Clock/>);
-        var seconds = 61;
-        var expected = '01:01';
-        var actual = clock.formatSeconds(seconds);
+    describe('formatSeconds', () => {
+        it('should format seconds', () => {
+            //want to render the component to be able to check it
+            var clock = TestUtils.renderIntoDocument(<Clock/>);
+            var seconds = 615;
+            var expected = '10:15';
+            var actual = clock.formatSeconds(seconds);
 
-        expect(actual).toBe(expected);
+            expect(actual).toBe(expected);
+        });
+
+        it('should format seconds when min/sec are less than 10', () => {
+            //want to render the component to be able to check it
+            var clock = TestUtils.renderIntoDocument(<Clock/>);
+            var seconds = 61;
+            var expected = '01:01';
+            var actual = clock.formatSeconds(seconds);
+
+            expect(actual).toBe(expected);
+        });
     });
 });

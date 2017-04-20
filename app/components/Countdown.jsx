@@ -1,11 +1,11 @@
 var React = require('react');
-var {Link} = require('react-router');
+var Clock = require('Clock');
 
 var Countdown = React.createClass({
     render: function() {
         return (
             <div>
-                <p>Countdown.jsx component</p>
+                <Clock totalSeconds={129}/>
             </div>
         );
     }
