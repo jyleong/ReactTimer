@@ -36,4 +36,16 @@ describe('Timer', ()=> {
         },1001);
     });
 
+    it('should clear count on stopped status', (done)=> {
+        var timer = TestUtils.renderIntoDocument(<Timer/>);
+        timer.handleSetCountdown(3);
+        timer.handleStatusChange('stopped');
+
+        setTimeout(() => {
+            expect(timer.state.count).toBe(0);
+            expect(timer.state.timerStatus).toBe('stopped');
+            done();
+        },1001);
+    });
+
 });
